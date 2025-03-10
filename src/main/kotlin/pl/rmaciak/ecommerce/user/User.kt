@@ -10,14 +10,14 @@ internal data class User(
 internal class UserRegistration {
 
     fun registerUser(user: User): Boolean {
-        // user must be 18 years or older
-        if (user.age < 18) {
-            throw UserMustBeAnAdultException()
-        }
-
         // provided e-mail address must be valid
         if (!isValidEmailAddress(user.email)) {
             throw InvalidEmailAddressException(user.email)
+        }
+
+        // user's age must be between 18 and 100
+        if (user.age > 18 && user.age < 100) {
+            throw UserMustBeAnAdultException()
         }
 
         // user is persisted
