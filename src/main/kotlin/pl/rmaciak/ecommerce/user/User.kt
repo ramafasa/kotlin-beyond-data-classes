@@ -16,7 +16,7 @@ internal class UserRegistration {
         }
 
         // user's age must be between 18 and 100
-        if (user.age > 18 && user.age < 100) {
+        if (user.age !in 18..100) {
             throw UserMustBeAnAdultException()
         }
 
