@@ -1,5 +1,9 @@
 package pl.rafalmaciak.ecommerce.user
 
+import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistered
+import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFailure.ErrorWhilePersistingUser
+import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFailure.UserAgeNotValid
+import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFailure.UserAlreadyExists
 import java.util.UUID
 
 internal data class User(
@@ -11,24 +15,35 @@ internal data class User(
 
 internal object UserRegistration {
 
-    fun registerUser(user: User): Result<UserId> {
+    fun registerUser(user: User): UserRegistrationResult {
+        // error if user already exists
+        if (UserRepository.exists(user)) {
+            return UserAlreadyExists
+        }
+
         // user must be 18 years or older
         if (user.age !in 18..100) {
-            throw UserAgeNotValidException()
+            return UserAgeNotValid
         }
 
         // user is persisted
         try {
             val userId = UserRepository.persist(user)
-            return Result.success(UserId(userId))
+            return UserRegistered(UserId(userId))
         } catch (ex: Exception) {
-            return return Result.failure(ex)
+            return return ErrorWhilePersistingUser(ex)
         }
+    }
+}
+
+internal sealed class UserRegistrationResult {
+    data class UserRegistered(val userId: UserId) : UserRegistrationResult()
+    object UserRegistrationFailure : UserRegistrationResult() {
+        object UserAgeNotValid : UserRegistrationResult()
+        object UserAlreadyExists : UserRegistrationResult()
+        data class ErrorWhilePersistingUser(val error: Throwable) : UserRegistrationResult()
     }
 }
 
 @JvmInline
 internal value class UserId(val raw: UUID)
-
-internal class UserAgeNotValidException :
-    RuntimeException("User age must be between 18 and 100")
