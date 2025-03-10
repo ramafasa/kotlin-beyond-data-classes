@@ -1,7 +1,5 @@
 package pl.rafalmaciak.ecommerce.user
 
-import pl.rmaciak.ecommerce.user.Email
-
 internal data class User(
     val firstName: String,
     val lastName: String,

@@ -1,4 +1,4 @@
-package pl.rmaciak.ecommerce.user
+package pl.rafalmaciak.ecommerce.user
 
 
 /**

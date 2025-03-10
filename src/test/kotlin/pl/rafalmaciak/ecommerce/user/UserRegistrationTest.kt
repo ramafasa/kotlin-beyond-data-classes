@@ -3,7 +3,6 @@ package pl.rafalmaciak.ecommerce.user
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
-import pl.rmaciak.ecommerce.user.Email
 
 
 class UserRegistrationTest : ShouldSpec({
