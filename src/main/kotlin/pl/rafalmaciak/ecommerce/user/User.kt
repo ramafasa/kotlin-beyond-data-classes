@@ -1,4 +1,4 @@
-package pl.rmaciak.ecommerce.user
+package pl.rafalmaciak.ecommerce.user
 
 internal data class User(
     val firstName: String,
@@ -7,7 +7,7 @@ internal data class User(
     val age: Int
 )
 
-internal class UserRegistration {
+internal object UserRegistration {
 
     fun registerUser(user: User): Boolean {
         // user must be 18 years or older
