@@ -1,5 +1,7 @@
 package pl.rafalmaciak.ecommerce.user
 
+import pl.rmaciak.ecommerce.user.Email
+
 internal data class User(
     val firstName: String,
     val lastName: String,
@@ -10,9 +12,9 @@ internal data class User(
 internal object UserRegistration {
 
     fun registerUser(user: User): Boolean {
-        // user must be 18 years or older
-        if (user.age < 18) {
-            throw UserMustBeAnAdultException()
+        // user's age must be between 18 and 100
+        if (user.age < 18 || user.age > 100) {
+            throw UserAgeNotValidException()
         }
 
         // user is persisted
@@ -25,5 +27,5 @@ internal object UserRegistration {
     }
 }
 
-internal class UserMustBeAnAdultException :
-    RuntimeException("User must be 18 years or older to register account")
+internal class UserAgeNotValidException :
+    RuntimeException("User age must be between 18 and 100")
