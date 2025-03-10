@@ -17,7 +17,7 @@ internal object UserRegistration {
 
         // user's age must be between 18 and 100
         if (user.age < 18 || user.age > 100) {
-            throw UserMustBeAnAdultException()
+            throw UserAgeNotValidException()
         }
 
         // user is persisted
@@ -36,8 +36,8 @@ internal object UserRegistration {
 }
 
 
-internal class UserMustBeAnAdultException :
-    RuntimeException("User must be 18 years or older to register account")
+internal class UserAgeNotValidException :
+    RuntimeException("User age must be between 18 and 100")
 
 internal class InvalidEmailAddressException(email: String) :
     RuntimeException("Invalid email address $email")
