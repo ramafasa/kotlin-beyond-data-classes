@@ -1,4 +1,4 @@
-package pl.rmaciak.ecommerce.user
+package pl.rafalmaciak.ecommerce.user
 
 internal data class User(
     val firstName: String,
@@ -7,7 +7,7 @@ internal data class User(
     val age: Int
 )
 
-internal class UserRegistration {
+internal object UserRegistration {
 
     fun registerUser(user: User): Boolean {
         // provided e-mail address must be valid
@@ -36,8 +36,8 @@ internal class UserRegistration {
 }
 
 
-internal class UserMustBeAnAdultException :
-    RuntimeException("User must be 18 years or older to register account")
+internal class UserAgeNotValidException :
+    RuntimeException("User age must be between 18 and 100")
 
 internal class InvalidEmailAddressException(email: String) :
     RuntimeException("Invalid email address $email")
