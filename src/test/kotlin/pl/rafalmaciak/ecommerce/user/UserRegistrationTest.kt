@@ -3,7 +3,6 @@ package pl.rafalmaciak.ecommerce.user
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
-import pl.rmaciak.ecommerce.user.Email
 
 
 class UserRegistrationTest : ShouldSpec({
@@ -15,14 +14,14 @@ class UserRegistrationTest : ShouldSpec({
 
     should("throw UserMustBeAnAdultException for a user younger than 18") {
         val user = User("John", "Doe", Email("john.doe@example.com"), 16)
-        shouldThrow<UserMustBeAnAdultException> {
+        shouldThrow<UserAgeNotValidException> {
             UserRegistration.registerUser(user)
         }
     }
 
     should("throw UserMustBeAnAdultException for a user older than 100") {
         val user = User("John", "Doe", Email("john.doe@example.com"), 101)
-        shouldThrow<UserMustBeAnAdultException> {
+        shouldThrow<UserAgeNotValidException> {
             UserRegistration.registerUser(user)
         }
     }

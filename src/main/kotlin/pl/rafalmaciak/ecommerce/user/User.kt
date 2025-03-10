@@ -1,6 +1,5 @@
 package pl.rafalmaciak.ecommerce.user
 
-import pl.rmaciak.ecommerce.user.Email
 import java.util.UUID
 
 internal data class User(
@@ -15,7 +14,7 @@ internal object UserRegistration {
     fun registerUser(user: User): Result<UserId> {
         // user must be 18 years or older
         if (user.age !in 18..100) {
-            throw UserMustBeAnAdultException()
+            throw UserAgeNotValidException()
         }
 
         // user is persisted
@@ -31,5 +30,5 @@ internal object UserRegistration {
 @JvmInline
 internal value class UserId(val raw: UUID)
 
-internal class UserMustBeAnAdultException :
-    RuntimeException("User must be 18 years or older to register account")
+internal class UserAgeNotValidException :
+    RuntimeException("User age must be between 18 and 100")
