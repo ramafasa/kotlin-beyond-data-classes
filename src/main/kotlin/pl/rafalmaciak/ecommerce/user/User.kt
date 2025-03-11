@@ -10,7 +10,7 @@ import java.util.UUID
 import kotlin.Result.Companion.failure
 import kotlin.Result.Companion.success
 
-internal data class User(
+internal data class User private constructor(
     val firstName: String,
     val lastName: String,
     val email: Email,
@@ -52,7 +52,7 @@ internal object UserRegistration {
             user.email,
             user.age
         ).getOrElse {
-            return when(it) {
+            return when (it) {
                 is UserAgeNotValidException -> UserAgeNotValid
                 is InvalidEmailAddressException -> UserEmailNotValid
                 else -> UserRegistrationFailure
