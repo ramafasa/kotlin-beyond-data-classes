@@ -27,9 +27,9 @@ internal object UserRegistration {
         }
 
         // user is persisted
-        try {
+        return try {
             val userId = UserRepository.persist(user)
-            return UserRegistered(UserId(userId))
+            UserRegistered(UserId(userId))
         } catch (ex: Exception) {
             return return ErrorWhilePersistingUser(ex)
         }
