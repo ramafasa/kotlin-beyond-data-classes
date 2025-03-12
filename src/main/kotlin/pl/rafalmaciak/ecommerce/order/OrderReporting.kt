@@ -54,18 +54,8 @@ internal object OrderReporting {
             }
             row.createCell(5).setCellValue(shippingAddress)
 
-            row.createCell(6).setCellValue(
-                """
-                    Order ID: ${order.orderId}
-                    Created by: ${order.userId}
-                    
-                    ============================================================
-                    Item           || Quantity       || Price       || Total
-                    ------------------------------------------------------------
-                    ${order.items.joinToString("\n") { "${it.productId} || ${it.quantity} || ${it.price} || ${it.quantity * it.price}" }}
-                    ============================================================
-                """.trimIndent()
-            )
+            // Print out the order details in the last column
+            row.createCell(6).setCellValue(order.printout())
         }
 
         // Auto-size columns for better presentation
@@ -80,3 +70,15 @@ internal object OrderReporting {
         workbook.close()
     }
 }
+
+internal fun Order.printout() =
+    """
+                    Order ID: ${this.orderId}
+                    Created by: ${this.userId}
+                    
+                    ============================================================
+                    Item           || Quantity       || Price       || Total
+                    ------------------------------------------------------------
+                    ${this.items.joinToString("\n") { "${it.productId} || ${it.quantity} || ${it.price} || ${it.quantity * it.price}" }}
+                    ============================================================
+    """.trimIndent()
