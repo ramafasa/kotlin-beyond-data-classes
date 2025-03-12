@@ -12,7 +12,7 @@ class MoneyTest : ShouldSpec({
     should("add money in the same currency") {
         val money1 = Money(100.0, PLN)
         val money2 = Money(200.0, PLN)
-        val result = money1.add(money2)
+        val result = money1 + money2
 
         result.amount shouldBeExactly 300.0
         result.currency shouldBe PLN
@@ -23,13 +23,13 @@ class MoneyTest : ShouldSpec({
         val money2 = Money(200.0, USD)
 
         shouldThrow<IllegalStateException> {
-            money1.add(money2)
+            money1 + money2
         }
     }
 
     should("apply discount to money") {
         val money = Money(100.0, PLN)
-        val result = money.multiply(0.23)
+        val result = money * 0.23
         result.amount shouldBeExactly 23.0
         result.currency shouldBe PLN
     }

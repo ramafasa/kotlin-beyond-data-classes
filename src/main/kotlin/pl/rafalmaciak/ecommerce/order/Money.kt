@@ -5,7 +5,7 @@ internal class Money(
     val currency: Currency
 ) {
 
-    fun add(other: Money): Money {
+    operator fun plus(other: Money): Money {
         check(this.currency == other.currency) {
             "Cannot add money in different currencies: ${this.currency} and ${other.currency}"
         }
@@ -13,9 +13,7 @@ internal class Money(
         return Money(this.amount + other.amount, currency)
     }
 
-    fun multiply(factor: Double): Money {
-        return Money(amount * factor, currency)
-    }
+    operator fun times(factor: Double): Money = Money(this.amount * factor, currency)
 }
 
 internal enum class Currency {
