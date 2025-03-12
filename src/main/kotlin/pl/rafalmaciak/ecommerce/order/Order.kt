@@ -7,12 +7,12 @@ import pl.rafalmaciak.ecommerce.order.OrderStatus.SHIPPED
 import java.util.UUID
 
 internal data class Order(
-    private val orderId: UUID,
-    private val userId: UUID,
+    val orderId: UUID,
+    val userId: UUID,
     val status: OrderStatus,
     val items: List<OrderItem>,
-    private val totalAmount: Double?,
-    private val shippingAddress: String?,
+    val totalAmount: Double?,
+    val shippingAddress: String?,
 ) {
 
     fun cancelOrder(): Order =
