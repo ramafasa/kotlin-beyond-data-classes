@@ -3,35 +3,36 @@ package pl.rafalmaciak.ecommerce.integration
 import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
-import pl.rafalmaciak.ecommerce.order.Order
+import pl.rafalmaciak.ecommerce.helpers.order
 import pl.rafalmaciak.ecommerce.order.Order.CompletedOrder
-import pl.rafalmaciak.ecommerce.order.OrderItem
-import pl.rafalmaciak.ecommerce.user.UserDto
-import pl.rafalmaciak.ecommerce.user.UserRegistration
-import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistered
-import java.util.UUID
+import pl.rafalmaciak.ecommerce.user.dsl.expectSuccess
+import pl.rafalmaciak.ecommerce.user.dsl.registerUser
 
 
 class IntegrationTests : ShouldSpec({
 
     should("create user and order") {
         // given user is registered
-        val userDto = UserDto("John", "Doe", "john.doe@example.com", 30)
-        UserRegistration.registerUser(userDto)
-
-        val user = when (val user = UserRegistration.registerUser(userDto)) {
-            is UserRegistered -> user.user
-            else -> throw AssertionError("Expected UserRegistered but got $user")
-        }
+        val user = registerUser {
+            firstName = "Alice"
+            lastName = "Smith"
+            email = "alice.smith@example.com"
+            age = 28
+        }.expectSuccess()
 
         // and order exists
-        var order = Order.PendingOrder(
-            orderId = UUID.randomUUID(),
-            userId = user.id.raw,
-        )
-
-        order = order.addOrderItem(OrderItem(UUID.randomUUID(), 2, 50.0))
-        order = order.addOrderItem(OrderItem(UUID.randomUUID(), 1, 100.0))
+        val order = order {
+            orderCreator = user
+            item {
+                quantity = 2
+                price = 50.0
+            }
+            // Add the second order item
+            item {
+                quantity = 1
+                price = 100.0
+            }
+        }
 
         // when completing the order
         val completedOrder = order.completeOrder()
