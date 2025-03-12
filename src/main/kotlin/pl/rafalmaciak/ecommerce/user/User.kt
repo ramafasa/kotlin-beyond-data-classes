@@ -42,9 +42,3 @@ internal class UserAgeNotValidException :
 internal class InvalidEmailAddressException(email: String) :
     RuntimeException("Invalid email address $email")
 
-
-/*
-TODO
-IDEAS:
-jeśli cena pomiędzy 10 .. 100
- */
