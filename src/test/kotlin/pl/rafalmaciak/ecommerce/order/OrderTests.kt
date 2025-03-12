@@ -13,9 +13,7 @@ class OrderTests : ShouldSpec({
     context("cancelling order") {
         should("cancel a pending order") {
             val order = Order.PendingOrder(
-                orderId = UUID.randomUUID(),
                 userId = UUID.randomUUID(),
-                items = emptyList(),
             )
 
             val cancelledOrder = order.cancelOrder()
@@ -46,9 +44,7 @@ class OrderTests : ShouldSpec({
             )
 
             val order = Order.PendingOrder(
-                orderId = UUID.randomUUID(),
                 userId = UUID.randomUUID(),
-                items = emptyList(),
             )
 
             val updatedOrder = order.addOrderItem(orderItem)
@@ -60,9 +56,7 @@ class OrderTests : ShouldSpec({
 
         should("fail to complete an order with empty items") {
             val order = Order.PendingOrder(
-                orderId = UUID.randomUUID(),
                 userId = UUID.randomUUID(),
-                items = emptyList(),
             )
 
             val exception = shouldThrow<IllegalStateException> { order.completeOrder() }

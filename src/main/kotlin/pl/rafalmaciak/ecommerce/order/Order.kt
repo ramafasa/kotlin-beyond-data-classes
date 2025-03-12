@@ -14,9 +14,9 @@ internal sealed class Order(
     }
 
     internal data class PendingOrder(
-        override val orderId: UUID,
+        override val orderId: UUID = UUID.randomUUID(),
         override val userId: UUID,
-        override val items: List<OrderItem>,
+        override val items: List<OrderItem> = emptyList(),
     ) : Order(orderId, userId, items), CancellableOrder {
 
         fun addOrderItem(orderItem: OrderItem): PendingOrder =
