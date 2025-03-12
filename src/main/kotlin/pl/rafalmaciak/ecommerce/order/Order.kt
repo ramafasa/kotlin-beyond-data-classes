@@ -12,7 +12,7 @@ internal data class Order(
     val status: OrderStatus,
     val items: List<OrderItem>,
     val totalAmount: Double?,
-    val shippingAddress: String?,
+    private val shippingAddress: String?,
 ) {
 
     fun cancelOrder(): Order =

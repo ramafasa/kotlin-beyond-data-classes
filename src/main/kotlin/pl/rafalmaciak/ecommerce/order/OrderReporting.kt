@@ -49,7 +49,7 @@ internal object OrderReporting {
 
             // Only Shipped orders have a shipping address.
             val shippingAddress = when (order.status) {
-                SHIPPED -> order.shippingAddress
+                SHIPPED -> order.getShippingAddress()
                 else -> ""
             }
             row.createCell(5).setCellValue(shippingAddress)
