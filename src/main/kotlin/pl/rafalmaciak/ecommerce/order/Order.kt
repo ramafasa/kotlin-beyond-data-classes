@@ -10,7 +10,7 @@ internal data class Order(
     private val orderId: UUID,
     private val userId: UUID,
     val status: OrderStatus,
-    private val items: List<OrderItem>,
+    val items: List<OrderItem>,
     private val totalAmount: Double?,
     private val shippingAddress: String?,
 ) {
@@ -29,8 +29,6 @@ internal data class Order(
 
         return this.copy(
             items = this.items + orderItem,
-            totalAmount = totalAmount?.plus(orderItem.price * orderItem.quantity)
-                ?: (orderItem.price * orderItem.quantity),
         )
     }
 
@@ -40,7 +38,10 @@ internal data class Order(
     fun completeOrder(): Order {
         check(status == PENDING) { "Order in status $status cannot be completed" }
         check(items.isNotEmpty()) { "Order items must not be empty" }
-        return this.copy(status = COMPLETED)
+        return this.copy(
+            status = COMPLETED,
+            totalAmount = items.sumOf { it.price * it.quantity },
+        )
     }
 
     fun shipOrder(shippingAddress: String): Order =

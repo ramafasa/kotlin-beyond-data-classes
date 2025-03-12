@@ -2,6 +2,7 @@ package pl.rafalmaciak.ecommerce.order
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.ShouldSpec
+import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.doubles.shouldBeExactly
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
@@ -66,7 +67,7 @@ class OrderTests : ShouldSpec({
             val order = createOrder(PENDING, items = emptyList(), totalAmount = 0.0)
             val updatedOrder = order.addOrderItem(orderItem)
 
-            updatedOrder.getOrderTotalAmount().shouldBeExactly(50.0 * 2)
+            updatedOrder.items shouldContainAll listOf(orderItem)
         }
 
         listOf(COMPLETED, SHIPPED, CANCELLED).forEach { status ->
