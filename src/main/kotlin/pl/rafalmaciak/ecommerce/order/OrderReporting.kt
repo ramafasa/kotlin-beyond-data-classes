@@ -1,16 +1,11 @@
 package pl.rafalmaciak.ecommerce.order
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
-import pl.rafalmaciak.ecommerce.order.OrderStatus.COMPLETED
-import pl.rafalmaciak.ecommerce.order.OrderStatus.SHIPPED
 import java.io.FileOutputStream
 
 internal object OrderReporting {
 
-    /**
-     * Creates Excel report for the given orders
-     */
-    fun createReportForOrders(orders: Set<Order>) {
+    internal fun createReportForOrders(orders: Set<Order>) {
         // Create a new workbook and sheet
         val workbook = XSSFWorkbook()
         val sheet = workbook.createSheet("Orders Report")
@@ -23,7 +18,6 @@ internal object OrderReporting {
         headerRow.createCell(3).setCellValue("Items")
         headerRow.createCell(4).setCellValue("Total Amount")
         headerRow.createCell(5).setCellValue("Shipping Address")
-        headerRow.createCell(6).setCellValue("Order representation")
 
         // Write each order as a new row
         var rowIndex = 1
@@ -31,8 +25,14 @@ internal object OrderReporting {
             val row = sheet.createRow(rowIndex++)
             row.createCell(0).setCellValue(order.orderId.toString())
             row.createCell(1).setCellValue(order.userId.toString())
-            row.createCell(2).setCellValue(order.status.name)
-
+            row.createCell(2).setCellValue(
+                when (order) {
+                    is Order.PendingOrder -> "Pending"
+                    is Order.CompletedOrder -> "Completed"
+                    is Order.ShippedOrder -> "Shipped"
+                    is Order.CancelledOrder -> "Cancelled"
+                }
+            )
             // Create a summary string of order items, e.g., "prodId1 (x2), prodId2 (x1)"
             val itemsString = order.items.joinToString(separator = ", ") {
                 "${it.productId} (x${it.quantity})"
@@ -40,37 +40,26 @@ internal object OrderReporting {
             row.createCell(3).setCellValue(itemsString)
 
             // For Completed and Shipped orders, show the total amount; otherwise leave blank.
-            val totalAmount = when (order.status) {
-                COMPLETED -> order.totalAmount
-                SHIPPED -> order.totalAmount
+            val totalAmount = when (order) {
+                is Order.CompletedOrder -> order.totalAmount
+                is Order.ShippedOrder -> order.totalAmount
                 else -> null
             }
             row.createCell(4).setCellValue(totalAmount?.toString() ?: "")
 
             // Only Shipped orders have a shipping address.
-            val shippingAddress = when (order.status) {
-                SHIPPED -> order.getShippingAddress()
+            val shippingAddress = when (order) {
+                is Order.ShippedOrder -> order.shippingAddress
                 else -> ""
             }
             row.createCell(5).setCellValue(shippingAddress)
 
-            row.createCell(6).setCellValue(
-                """
-                    Order ID: ${order.orderId}
-                    Created by: ${order.userId}
-                    Status: ${order.status}
-                                        
-                    ============================================================
-                    Item           || Quantity       || Price       || Total
-                    ------------------------------------------------------------
-                    ${order.items.joinToString("\n") { "${it.productId} || ${it.quantity} || ${it.price} || ${it.quantity * it.price}" }}
-                    ============================================================
-                """.trimIndent()
-            )
+            // Print out the order details in the last column
+            row.createCell(6).setCellValue(order.printout())
         }
 
         // Auto-size columns for better presentation
-        for (i in 0..5) {
+        for (i in 0..6) {
             sheet.autoSizeColumn(i)
         }
 
@@ -80,5 +69,16 @@ internal object OrderReporting {
         }
         workbook.close()
     }
-
 }
+
+internal fun Order.printout() =
+    """
+                    Order ID: ${this.orderId}
+                    Created by: ${this.userId}
+                    
+                    ============================================================
+                    Item           || Quantity       || Price       || Total
+                    ------------------------------------------------------------
+                    ${this.items.joinToString("\n") { "${it.productId} || ${it.quantity} || ${it.price} || ${it.quantity * it.price}" }}
+                    ============================================================
+    """.trimIndent()
