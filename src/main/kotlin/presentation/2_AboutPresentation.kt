@@ -2,7 +2,7 @@ package presentation
 
 const val aboutPresentation = """
     
-    What this presentation is about?
+    What is this presentation about?
     ================================
     
     * Improving domain model code to become:
