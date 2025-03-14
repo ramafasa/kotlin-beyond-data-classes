@@ -1,4 +1,4 @@
-package pl.rafalmaciak.ecommerce.user.dsl
+package pl.rafalmaciak.ecommerce.helpers
 
 import pl.rafalmaciak.ecommerce.user.User
 import pl.rafalmaciak.ecommerce.user.UserDto
@@ -15,7 +15,7 @@ import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistered
  *     firstName = "Alice"
  *     lastName = "Smith"
  *     email = "alice.smith@example.com"
- *     age = 28
+ *     age = 28O
  * }.expectSuccess()
  *
  * The function returns a UserRegistrationResult. The chained `expectSuccess()`

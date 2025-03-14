@@ -2,13 +2,16 @@ package presentation
 
 const val aboutPresentation = """
     
-    What this presentation is about?
+    What is this presentation about?
     ================================
     
-    * Improving domain model code to become:
-        - More readable (because we mainly read the code)
+    * Kotlin is a great choice for implementing backend services with rich domain models for 
+      complex business logic.
+    
+    * Kotlin allows to build domain code which is:
+        - Highly readable and concise (because we mainly read the code)
         - Less error prone
-        - Easier to test
+        - Easy to test
         - Resilient to requirements changes
         - More fun to write :)
     
