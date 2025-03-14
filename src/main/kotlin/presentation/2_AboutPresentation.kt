@@ -8,10 +8,10 @@ const val aboutPresentation = """
     * Kotlin is a great choice for implementing backend services with rich domain models for 
       complex business logic.
     
-    * Improving domain model code to become:
-        - More readable (because we mainly read the code)
+    * Kotlin allows to build domain code which is:
+        - Highly readable and concise (because we mainly read the code)
         - Less error prone
-        - Easier to test
+        - Easy to test
         - Resilient to requirements changes
         - More fun to write :)
     
