@@ -12,7 +12,7 @@ internal data class User(
 internal object UserRegistration {
 
     fun registerUser(user: User): Result<UserId> {
-        // user must be 18 years or older
+        // user's age must be between 18 and 100
         if (user.age !in 18..100) {
             throw UserAgeNotValidException()
         }
