@@ -14,7 +14,7 @@ internal object UserRegistration {
     fun registerUser(user: User): Result<UserId> {
         // user's age must be between 18 and 100
         if (user.age !in 18..100) {
-            throw UserAgeNotValidException()
+            return Result.failure(UserAgeNotValidException())
         }
 
         // user is persisted
