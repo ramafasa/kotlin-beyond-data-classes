@@ -7,8 +7,7 @@ const val domain = """
     * User registration
     * Order creation and management
     * Order export to Excel
-    * Money model    
-    
+         
     
     !! DISCLAIMER: This is a simplified domain model for the sake of this presentation. 
      
