@@ -6,7 +6,6 @@ import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFail
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFailure.UserAgeNotValid
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFailure.UserAlreadyExists
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFailure.UserEmailNotValid
-import java.util.UUID
 import kotlin.Result.Companion.failure
 import kotlin.Result.Companion.success
 
@@ -69,7 +68,7 @@ internal object UserRegistration {
             UserRepository.persist(user)
             UserRegistered(user)
         } catch (ex: Exception) {
-            return return ErrorWhilePersistingUser(ex)
+            ErrorWhilePersistingUser(ex)
         }
     }
 }
@@ -87,6 +86,3 @@ internal sealed class UserRegistrationResult {
 internal class UserAgeNotValidException :
     RuntimeException("User age must be between 18 and 100")
 
-
-@JvmInline
-internal value class UserId(val raw: UUID)
