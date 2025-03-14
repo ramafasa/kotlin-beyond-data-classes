@@ -10,6 +10,10 @@ internal object UserRepository {
     fun exists(user: User): Boolean =
         users.contains(user)
 
+    fun clear() {
+        users.clear()
+    }
+
     fun persist(user: User): UUID {
         if (shouldFail) {
             throw RuntimeException("Failed to persist user")
@@ -17,9 +21,5 @@ internal object UserRepository {
         users.add(user)
 
         return UUID.randomUUID()
-    }
-
-    fun clear() {
-        users.clear()
     }
 }

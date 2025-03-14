@@ -21,7 +21,7 @@ internal object UserRegistration {
             return UserAlreadyExists
         }
 
-        // user must be 18 years or older
+        // user's age must be between 18 and 100
         if (user.age !in 18..100) {
             return UserAgeNotValid
         }
@@ -31,7 +31,7 @@ internal object UserRegistration {
             val userId = UserRepository.persist(user)
             UserRegistered(UserId(userId))
         } catch (ex: Exception) {
-            return return ErrorWhilePersistingUser(ex)
+            ErrorWhilePersistingUser(ex)
         }
     }
 }
