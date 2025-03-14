@@ -77,10 +77,10 @@ internal data class Order(
 }
 
 internal enum class OrderStatus {
-    PENDING,
-    COMPLETED,
-    SHIPPED,
-    CANCELLED,
+    PENDING, // Order has been created and items can be added
+    COMPLETED, // order completed and total amount calculated, items cannot be added
+    SHIPPED, // order has been shipped to the buyer
+    CANCELLED, // order has been cancelled by the buyer
 }
 
 internal data class OrderItem(
