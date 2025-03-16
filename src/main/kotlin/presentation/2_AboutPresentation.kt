@@ -10,6 +10,7 @@ const val aboutPresentation = """
     
     * Kotlin allows to build domain code which is:
         - Highly readable and concise (because we mainly read the code)
+        - Aligned with business language
         - Less error prone
         - Easy to test
         - Resilient to requirements changes

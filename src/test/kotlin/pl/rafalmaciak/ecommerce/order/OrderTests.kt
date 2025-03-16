@@ -128,14 +128,14 @@ class OrderTests : ShouldSpec({
         should("ship an order and set the shipping address") {
             val order = createOrder(COMPLETED)
             val shippedOrder = order.shipOrder("123 Main St")
-            shippedOrder.getShippingAddress() shouldBe "123 Main St"
+            shippedOrder.shippingAddress() shouldBe "123 Main St"
             shippedOrder.status shouldBe SHIPPED
         }
 
         should("fail to get shipping address when not set") {
             val nonShippedOrder = createOrder(SHIPPED)
             val exception =
-                shouldThrow<IllegalStateException> { nonShippedOrder.getShippingAddress() }
+                shouldThrow<IllegalStateException> { nonShippedOrder.shippingAddress() }
             exception.message shouldContain "Shipping address is not set"
         }
 
