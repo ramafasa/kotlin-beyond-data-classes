@@ -7,6 +7,7 @@ import pl.rafalmaciak.ecommerce.helpers.order
 import pl.rafalmaciak.ecommerce.order.Order.CompletedOrder
 import pl.rafalmaciak.ecommerce.helpers.expectSuccess
 import pl.rafalmaciak.ecommerce.helpers.registerUser
+import pl.rafalmaciak.ecommerce.helpers.shouldBeCompletedWithTotalAmount
 
 
 class IntegrationTests : ShouldSpec({
@@ -35,10 +36,7 @@ class IntegrationTests : ShouldSpec({
         }
 
         // when completing the order
-        val completedOrder = order.completeOrder()
-
-        // then the order is completed
-        completedOrder.getOrderTotalAmount() shouldBe 200
-        completedOrder.shouldBeInstanceOf<CompletedOrder>()
+        // then the order is completed with expected total amount
+        order.completeOrder() shouldBeCompletedWithTotalAmount 200.0
     }
 })

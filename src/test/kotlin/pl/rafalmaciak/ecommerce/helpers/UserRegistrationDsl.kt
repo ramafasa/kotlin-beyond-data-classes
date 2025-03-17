@@ -1,5 +1,9 @@
 package pl.rafalmaciak.ecommerce.helpers
 
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.shouldBeInstanceOf
+import pl.rafalmaciak.ecommerce.order.Order
+import pl.rafalmaciak.ecommerce.order.Order.CompletedOrder
 import pl.rafalmaciak.ecommerce.user.User
 import pl.rafalmaciak.ecommerce.user.UserDto
 import pl.rafalmaciak.ecommerce.user.UserRegistration
@@ -53,4 +57,10 @@ internal fun UserRegistrationResult.expectSuccess(): User {
         is UserRegistered -> this.user
         else -> throw AssertionError("Expected UserRegistered but got $this")
     }
+}
+
+internal infix fun Order.shouldBeCompletedWithTotalAmount(expectedTotalAmount: Double) {
+    this.shouldBeInstanceOf<CompletedOrder>()
+    getOrderTotalAmount() shouldBe expectedTotalAmount
+
 }
