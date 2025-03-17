@@ -11,7 +11,7 @@ const val title = """
               `---'                                                                                       
                                                                                                            
                                                                                                                                                                                                                           
-                            Kotlin-powered domain modeling
+                            Kotlin-powered domain modelling
                                                                                                                                                                                                                           
                                     Rafał Maciak                                                                                                                                                                                       
                                    
