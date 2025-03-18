@@ -15,7 +15,7 @@ const val title = """
                                                                                                                                                                                                                           
                                     Rafał Maciak                                                                                                                                                                                       
                                    
-                                 FM @ SML 17.03.2025
+                               JUG Wrocław 18.03.2025
                                                                                                                                                                                                                           
     
     
