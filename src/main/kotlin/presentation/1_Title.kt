@@ -18,7 +18,7 @@ const val title = """
                                                                                                                                                                                                                           
                                     Rafał Maciak                                                                                                                                                                                       
                                    
-                                 JUG Łódź 26.03.2025
+                                  Geecon 15.05.2025 
                                                                                                                                                                                                                           
     
     

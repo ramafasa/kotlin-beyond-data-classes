@@ -5,7 +5,7 @@ const val me = """
     Rafał Maciak
     ============    
     
-    - Senior Software Engineer @ SoftwareMill
+    - Staff Software Engineer @ SoftwareMill
     
     - Kotlin & Java
     
