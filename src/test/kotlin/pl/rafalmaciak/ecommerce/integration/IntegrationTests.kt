@@ -17,8 +17,6 @@ class IntegrationTests : ShouldSpec({
     should("create user and order") {
         // given user is registered
         val userDto = UserDto("John", "Doe", "john.doe@example.com", 30)
-        UserRegistration.registerUser(userDto)
-
         val user = when (val user = UserRegistration.registerUser(userDto)) {
             is UserRegistered -> user.user
             else -> throw AssertionError("Expected UserRegistered but got $user")
