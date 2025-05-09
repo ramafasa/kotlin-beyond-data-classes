@@ -18,6 +18,7 @@ internal object OrderReporting {
         headerRow.createCell(3).setCellValue("Items")
         headerRow.createCell(4).setCellValue("Total Amount")
         headerRow.createCell(5).setCellValue("Shipping Address")
+        headerRow.createCell(6).setCellValue("Order representation")
 
         // Write each order as a new row
         var rowIndex = 1
