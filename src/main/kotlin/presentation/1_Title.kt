@@ -18,7 +18,7 @@ const val title = """
                                                                                                                                                                                                                           
                                     Rafał Maciak                                                                                                                                                                                       
                                    
-                                  Geecon 15.05.2025 
+                                    Geecon 2025 
                                                                                                                                                                                                                           
     
     

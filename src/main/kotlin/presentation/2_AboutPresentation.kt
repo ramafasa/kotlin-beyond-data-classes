@@ -20,7 +20,10 @@ const val aboutPresentation = """
       Kotlin code using its features.
         
    
-    
+    QUESTIONS
+    https://wall.sli.do
+    #geecon
+    ROOM 10
         
 
 
