@@ -18,7 +18,7 @@ const val title = """
                                                                                                                                                                                                                           
                                     Rafał Maciak                                                                                                                                                                                       
                                    
-                                    Geecon 2025 
+                                 Kotlin Dev Day 2025 
                                                                                                                                                                                                                           
     
     
