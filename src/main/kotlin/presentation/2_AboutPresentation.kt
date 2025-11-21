@@ -19,11 +19,6 @@ const val aboutPresentation = """
     * Live refactoring to transform the anemic code into more readable, idiomatic and efficient 
       Kotlin code using its features.
         
-   
-    QUESTIONS
-    https://wall.sli.do
-    #geecon
-    ROOM 10
         
 
 
