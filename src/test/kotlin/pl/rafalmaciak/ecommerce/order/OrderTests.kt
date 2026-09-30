@@ -10,7 +10,7 @@ import pl.rafalmaciak.ecommerce.order.OrderStatus.CANCELLED
 import pl.rafalmaciak.ecommerce.order.OrderStatus.COMPLETED
 import pl.rafalmaciak.ecommerce.order.OrderStatus.PENDING
 import pl.rafalmaciak.ecommerce.order.OrderStatus.SHIPPED
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 class OrderTests : ShouldSpec({
 
@@ -21,8 +21,8 @@ class OrderTests : ShouldSpec({
         shippingAddress: String? = null
     ): Order {
         return Order(
-            orderId = UUID.randomUUID(),
-            userId = UUID.randomUUID(),
+            orderId = Uuid.random(),
+            userId = Uuid.random(),
             status = status,
             items = items,
             totalAmount = totalAmount,
@@ -58,7 +58,7 @@ class OrderTests : ShouldSpec({
 
     context("adding item to order") {
         val orderItem = OrderItem(
-            productId = UUID.randomUUID(),
+            productId = Uuid.random(),
             quantity = 2,
             price = 50.0
         )
@@ -94,7 +94,7 @@ class OrderTests : ShouldSpec({
     context("completing order") {
         should("complete an order with PENDING status and non-empty items") {
             val orderItem = OrderItem(
-                productId = UUID.randomUUID(),
+                productId = Uuid.random(),
                 quantity = 1,
                 price = 100.0
             )
@@ -109,7 +109,7 @@ class OrderTests : ShouldSpec({
             should("fail to complete an order with $status status") {
                 val order = createOrder(
                     status,
-                    items = listOf(OrderItem(UUID.randomUUID(), 1, 50.0)),
+                    items = listOf(OrderItem(Uuid.random(), 1, 50.0)),
                     totalAmount = 50.0
                 )
                 val exception = shouldThrow<IllegalStateException> { order.completeOrder() }

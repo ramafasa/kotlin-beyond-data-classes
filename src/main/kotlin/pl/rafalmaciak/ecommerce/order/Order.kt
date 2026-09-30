@@ -4,11 +4,11 @@ import pl.rafalmaciak.ecommerce.order.OrderStatus.CANCELLED
 import pl.rafalmaciak.ecommerce.order.OrderStatus.COMPLETED
 import pl.rafalmaciak.ecommerce.order.OrderStatus.PENDING
 import pl.rafalmaciak.ecommerce.order.OrderStatus.SHIPPED
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 internal data class Order(
-    val orderId: UUID,
-    val userId: UUID,
+    val orderId: Uuid,
+    val userId: Uuid,
     val status: OrderStatus,
     val items: List<OrderItem>,
     val totalAmount: Double?,
@@ -62,10 +62,10 @@ internal data class Order(
 
     companion object {
         fun createPendingOrder(
-            userId: UUID,
+            userId: Uuid,
         ) {
             Order(
-                orderId = UUID.randomUUID(),
+                orderId = Uuid.random(),
                 userId = userId,
                 status = PENDING,
                 items = emptyList(),
@@ -84,7 +84,7 @@ internal enum class OrderStatus {
 }
 
 internal data class OrderItem(
-    val productId: UUID,
+    val productId: Uuid,
     val quantity: Int,
     val price: Double,
 )
