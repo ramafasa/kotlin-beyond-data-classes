@@ -1,5 +1,6 @@
 package pl.rafalmaciak.ecommerce.user.dsl
 
+import pl.rafalmaciak.ecommerce.helpers.EcommerceDsl
 import pl.rafalmaciak.ecommerce.user.User
 import pl.rafalmaciak.ecommerce.user.UserDto
 import pl.rafalmaciak.ecommerce.user.UserRegistration
@@ -30,6 +31,7 @@ internal fun registerUser(init: UserRegistrationBuilder.() -> Unit): UserRegistr
 /**
  * DSL builder for constructing a [UserDto].
  */
+@EcommerceDsl
 internal class UserRegistrationBuilder {
     var firstName: String = ""
     var lastName: String = ""

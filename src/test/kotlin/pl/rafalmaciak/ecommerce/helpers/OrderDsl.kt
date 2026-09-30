@@ -29,6 +29,7 @@ internal fun order(init: OrderBuilder.() -> Unit): Order.PendingOrder {
     return builder.build()
 }
 
+@EcommerceDsl
 internal class OrderBuilder {
     // The user ID is mandatory for creating an order.
     lateinit var orderCreator: User
@@ -58,6 +59,7 @@ internal class OrderBuilder {
     }
 }
 
+@EcommerceDsl
 internal class OrderItemBuilder {
     // The productId must be set in the DSL.
     var productId: Uuid = Uuid.random()
