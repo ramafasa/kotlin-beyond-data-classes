@@ -5,7 +5,7 @@ const val me = """
     Rafał Maciak
     ============    
     
-    - Principal Software Engineer @ SoftwareMill
+    - Principal Software Engineer @ Virtus Lab x Software Mill
     
     - Kotlin & Java
     
