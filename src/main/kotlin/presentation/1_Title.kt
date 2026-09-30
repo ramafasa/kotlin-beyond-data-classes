@@ -15,7 +15,7 @@ const val title = """
                                                                                                                                                                                                                           
                                     Rafał Maciak                                                                                                                                                                                       
                                    
-                                JUG Wrocław 18.03.2025
+                                    Dev2Next 2026
                                                                                                                                                                                                                           
     
     
