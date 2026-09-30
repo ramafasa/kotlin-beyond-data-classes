@@ -44,6 +44,7 @@ internal data class UserDto(
 
 internal object UserRegistration {
 
+    context(userRepository: UserRepository)
     fun registerUser(user: UserDto): UserRegistrationResult {
         val user = User.create(
             user.firstName,
@@ -59,13 +60,13 @@ internal object UserRegistration {
         }
 
         // error if user already exists
-        if (UserRepository.exists(user)) {
+        if (userRepository.exists(user)) {
             return UserAlreadyExists
         }
 
         // user is persisted
         return try {
-            UserRepository.persist(user)
+            userRepository.persist(user)
             UserRegistered(user)
         } catch (ex: Exception) {
             ErrorWhilePersistingUser(ex)
