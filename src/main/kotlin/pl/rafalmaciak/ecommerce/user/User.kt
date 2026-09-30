@@ -6,16 +6,16 @@ import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFail
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFailure.UserAgeNotValid
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFailure.UserAlreadyExists
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFailure.UserEmailNotValid
-import java.util.UUID
 import kotlin.Result.Companion.failure
 import kotlin.Result.Companion.success
+import kotlin.uuid.Uuid
 
 internal data class User private constructor(
     val firstName: String,
     val lastName: String,
     val email: Email,
     val age: Int,
-    val id: UserId = UserId(UUID.randomUUID())
+    val id: UserId = UserId(Uuid.random())
 ) {
     companion object {
         fun create(
@@ -90,4 +90,4 @@ internal class UserAgeNotValidException :
 
 
 @JvmInline
-internal value class UserId(val raw: UUID)
+internal value class UserId(val raw: Uuid)
