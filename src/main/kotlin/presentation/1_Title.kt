@@ -18,7 +18,7 @@ const val title = """
                                                                                                                                                                                                                           
                                     Rafał Maciak                                                                                                                                                                                       
                                    
-                                 Kotlin Dev Day 2025 
+                                    Dev2Next 2026
                                                                                                                                                                                                                           
     
     
