@@ -4,7 +4,7 @@ import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistered
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFailure.ErrorWhilePersistingUser
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFailure.UserAgeNotValid
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFailure.UserAlreadyExists
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 internal data class User(
     val firstName: String,
@@ -46,4 +46,4 @@ internal sealed class UserRegistrationResult {
 }
 
 @JvmInline
-internal value class UserId(val raw: UUID)
+internal value class UserId(val raw: Uuid)

@@ -1,6 +1,6 @@
 package pl.rafalmaciak.ecommerce.user
 
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 internal object UserRepository {
 
@@ -14,12 +14,12 @@ internal object UserRepository {
         users.clear()
     }
 
-    fun persist(user: User): UUID {
+    fun persist(user: User): Uuid {
         if (shouldFail) {
             throw RuntimeException("Failed to persist user")
         }
         users.add(user)
 
-        return UUID.randomUUID()
+        return Uuid.random()
     }
 }
