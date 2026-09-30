@@ -1,6 +1,6 @@
 package pl.rafalmaciak.ecommerce.user
 
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 internal data class User(
     val firstName: String,
@@ -28,7 +28,7 @@ internal object UserRegistration {
 }
 
 @JvmInline
-internal value class UserId(val raw: UUID)
+internal value class UserId(val raw: Uuid)
 
 internal class UserAgeNotValidException :
     RuntimeException("User age must be between 18 and 100")
