@@ -19,7 +19,7 @@ import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistered
  *     firstName = "Alice"
  *     lastName = "Smith"
  *     email = "alice.smith@example.com"
- *     age = 28O
+ *     age = 28
  * }.expectSuccess()
  *
  * The function returns a UserRegistrationResult. The chained `expectSuccess()`
