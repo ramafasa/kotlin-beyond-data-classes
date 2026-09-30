@@ -22,7 +22,7 @@ internal object UserRegistration {
             val userId = UserRepository.persist(user)
             return Result.success(UserId(userId))
         } catch (ex: Exception) {
-            return return Result.failure(ex)
+            return Result.failure(ex)
         }
     }
 }
