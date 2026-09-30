@@ -34,6 +34,7 @@ internal fun registerUser(init: UserRegistrationBuilder.() -> Unit): UserRegistr
 /**
  * DSL builder for constructing a [UserDto].
  */
+@EcommerceDsl
 internal class UserRegistrationBuilder {
     var firstName: String = ""
     var lastName: String = ""
