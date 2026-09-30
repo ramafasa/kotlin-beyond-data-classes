@@ -1,11 +1,11 @@
 package pl.rafalmaciak.ecommerce.order
 
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 
 internal sealed class Order(
-    open val orderId: UUID,
-    open val userId: UUID,
+    open val orderId: Uuid,
+    open val userId: Uuid,
     open val items: List<OrderItem>
 ) {
 
@@ -14,8 +14,8 @@ internal sealed class Order(
     }
 
     internal data class PendingOrder(
-        override val orderId: UUID,
-        override val userId: UUID,
+        override val orderId: Uuid,
+        override val userId: Uuid,
         override val items: List<OrderItem>,
     ) : Order(orderId, userId, items), CancellableOrder {
 
@@ -34,10 +34,10 @@ internal sealed class Order(
 
         companion object {
             fun createPendingOrder(
-                userId: UUID,
+                userId: Uuid,
             ) {
                 PendingOrder(
-                    orderId = UUID.randomUUID(),
+                    orderId = Uuid.random(),
                     userId = userId,
                     items = emptyList(),
                 )
@@ -46,8 +46,8 @@ internal sealed class Order(
     }
 
     internal data class CompletedOrder(
-        override val orderId: UUID,
-        override val userId: UUID,
+        override val orderId: Uuid,
+        override val userId: Uuid,
         override val items: List<OrderItem>,
         val totalAmount: Double,
     ) : Order(orderId, userId, items), CancellableOrder {
@@ -68,22 +68,22 @@ internal sealed class Order(
     }
 
     internal data class ShippedOrder(
-        override val orderId: UUID,
-        override val userId: UUID,
+        override val orderId: Uuid,
+        override val userId: Uuid,
         override val items: List<OrderItem>,
         val totalAmount: Double,
         val shippingAddress: String,
     ) : Order(orderId, userId, items)
 
     internal data class CancelledOrder(
-        override val orderId: UUID,
-        override val userId: UUID,
+        override val orderId: Uuid,
+        override val userId: Uuid,
         override val items: List<OrderItem>,
     ) : Order(orderId, userId, items)
 }
 
 internal data class OrderItem(
-    val productId: UUID,
+    val productId: Uuid,
     val quantity: Int,
     val price: Double,
 )

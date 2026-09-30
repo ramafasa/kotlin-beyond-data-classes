@@ -9,7 +9,7 @@ import pl.rafalmaciak.ecommerce.order.OrderItem
 import pl.rafalmaciak.ecommerce.user.UserDto
 import pl.rafalmaciak.ecommerce.user.UserRegistration
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistered
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 
 class IntegrationTests : ShouldSpec({
@@ -24,13 +24,13 @@ class IntegrationTests : ShouldSpec({
 
         // and order exists
         var order = Order.PendingOrder(
-            orderId = UUID.randomUUID(),
+            orderId = Uuid.random(),
             userId = user.id.raw,
             items = emptyList()
         )
 
-        order = order.addOrderItem(OrderItem(UUID.randomUUID(), 2, 50.0))
-        order = order.addOrderItem(OrderItem(UUID.randomUUID(), 1, 100.0))
+        order = order.addOrderItem(OrderItem(Uuid.random(), 2, 50.0))
+        order = order.addOrderItem(OrderItem(Uuid.random(), 1, 100.0))
 
         // when completing the order
         val completedOrder = order.completeOrder()

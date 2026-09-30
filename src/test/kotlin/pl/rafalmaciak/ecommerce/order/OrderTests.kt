@@ -6,15 +6,15 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.types.shouldBeInstanceOf
 import pl.rafalmaciak.ecommerce.order.Order.CancelledOrder
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 class OrderTests : ShouldSpec({
 
     context("cancelling order") {
         should("cancel a pending order") {
             val order = Order.PendingOrder(
-                orderId = UUID.randomUUID(),
-                userId = UUID.randomUUID(),
+                orderId = Uuid.random(),
+                userId = Uuid.random(),
                 items = emptyList(),
             )
 
@@ -25,8 +25,8 @@ class OrderTests : ShouldSpec({
 
         should("cancel a completed order") {
             val order = Order.CompletedOrder(
-                orderId = UUID.randomUUID(),
-                userId = UUID.randomUUID(),
+                orderId = Uuid.random(),
+                userId = Uuid.random(),
                 items = emptyList(),
                 totalAmount = 0.0
             )
@@ -40,14 +40,14 @@ class OrderTests : ShouldSpec({
     context("completing order") {
         should("complete a pending order with non-empty items") {
             val orderItem = OrderItem(
-                productId = UUID.randomUUID(),
+                productId = Uuid.random(),
                 quantity = 1,
                 price = 100.0
             )
 
             val order = Order.PendingOrder(
-                orderId = UUID.randomUUID(),
-                userId = UUID.randomUUID(),
+                orderId = Uuid.random(),
+                userId = Uuid.random(),
                 items = emptyList(),
             )
 
@@ -60,8 +60,8 @@ class OrderTests : ShouldSpec({
 
         should("fail to complete an order with empty items") {
             val order = Order.PendingOrder(
-                orderId = UUID.randomUUID(),
-                userId = UUID.randomUUID(),
+                orderId = Uuid.random(),
+                userId = Uuid.random(),
                 items = emptyList(),
             )
 
@@ -74,14 +74,14 @@ class OrderTests : ShouldSpec({
     context("shipping order and getting shipping address") {
         should("ship an order and set the shipping address") {
             val orderItem = OrderItem(
-                productId = UUID.randomUUID(),
+                productId = Uuid.random(),
                 quantity = 1,
                 price = 100.0
             )
 
             val order = Order.CompletedOrder(
-                orderId = UUID.randomUUID(),
-                userId = UUID.randomUUID(),
+                orderId = Uuid.random(),
+                userId = Uuid.random(),
                 items = listOf(orderItem),
                 totalAmount = 100.0
             )
