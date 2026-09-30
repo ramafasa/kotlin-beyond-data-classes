@@ -72,7 +72,7 @@ internal object UserRegistration {
             UserRepository.persist(user)
             UserRegistered(user)
         } catch (ex: Exception) {
-            return return ErrorWhilePersistingUser(ex)
+            return ErrorWhilePersistingUser(ex)
         }
     }
 }
