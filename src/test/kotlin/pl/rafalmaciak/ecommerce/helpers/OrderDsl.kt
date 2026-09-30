@@ -3,21 +3,21 @@ package pl.rafalmaciak.ecommerce.helpers
 import pl.rafalmaciak.ecommerce.order.Order
 import pl.rafalmaciak.ecommerce.order.OrderItem
 import pl.rafalmaciak.ecommerce.user.User
-import java.util.UUID
+import kotlin.uuid.Uuid
 
 /**
  * DSL entry function that builds a PendingOrder.
  * Usage of the DSL looks like:
  *
  * val order = order {
- *     userId = UUID.randomUUID()
+ *     userId = Uuid.random()
  *     item {
- *         productId = UUID.randomUUID()
+ *         productId = Uuid.random()
  *         quantity = 2
  *         price = 50.0
  *     }
  *     item {
- *         productId = UUID.randomUUID()
+ *         productId = Uuid.random()
  *         quantity = 1
  *         price = 100.0
  *     }
@@ -51,7 +51,7 @@ internal class OrderBuilder {
     fun build(): Order.PendingOrder {
         // You could also use the companion object of PendingOrder if desired.
         return Order.PendingOrder(
-            orderId = UUID.randomUUID(),
+            orderId = Uuid.random(),
             userId = orderCreator.id.raw,
             items = items
         )
@@ -60,7 +60,7 @@ internal class OrderBuilder {
 
 internal class OrderItemBuilder {
     // The productId must be set in the DSL.
-    var productId: UUID = UUID.randomUUID()
+    var productId: Uuid = Uuid.random()
     // Default quantity is 1.
     var quantity: Int = 1
     // Default price is 0.0.
