@@ -63,7 +63,7 @@ internal data class Order(
     companion object {
         fun createPendingOrder(
             userId: Uuid,
-        ) {
+        ): Order =
             Order(
                 orderId = Uuid.random(),
                 userId = userId,
@@ -72,7 +72,6 @@ internal data class Order(
                 totalAmount = null,
                 shippingAddress = null,
             )
-        }
     }
 }
 
