@@ -1,4 +1,4 @@
-package pl.rafalmaciak.ecommerce.order
+package pl.rafalmaciak.ecommerce.user
 
 
 /**
