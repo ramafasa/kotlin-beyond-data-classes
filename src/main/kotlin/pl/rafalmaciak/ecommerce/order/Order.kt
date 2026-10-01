@@ -31,18 +31,6 @@ internal sealed class Order(
 
         override fun cancelOrder(): CancelledOrder =
             CancelledOrder(orderId, userId, items)
-
-        companion object {
-            fun createPendingOrder(
-                userId: Uuid,
-            ) {
-                PendingOrder(
-                    orderId = Uuid.random(),
-                    userId = userId,
-                    items = emptyList(),
-                )
-            }
-        }
     }
 
     internal data class CompletedOrder(
