@@ -8,17 +8,20 @@ import pl.rafalmaciak.ecommerce.order.Order.CompletedOrder
 import pl.rafalmaciak.ecommerce.helpers.expectSuccess
 import pl.rafalmaciak.ecommerce.helpers.registerUser
 import pl.rafalmaciak.ecommerce.helpers.shouldBeCompletedWithTotalAmount
+import pl.rafalmaciak.ecommerce.user.InMemoryUserRepository
 
 
 class IntegrationTests : ShouldSpec({
 
     should("create user and order") {
         // given user is registered
-        val user = registerUser {
-            firstName = "Alice"
-            lastName = "Smith"
-            email = "alice.smith@example.com"
-            age = 28
+        val user = with(InMemoryUserRepository()) {
+            registerUser {
+                firstName = "Alice"
+                lastName = "Smith"
+                email = "alice.smith@example.com"
+                age = 28
+            }
         }.expectSuccess()
 
         // and order exists

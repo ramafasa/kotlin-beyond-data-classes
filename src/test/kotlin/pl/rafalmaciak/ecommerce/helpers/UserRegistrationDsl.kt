@@ -9,6 +9,7 @@ import pl.rafalmaciak.ecommerce.user.UserDto
 import pl.rafalmaciak.ecommerce.user.UserRegistration
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistered
+import pl.rafalmaciak.ecommerce.user.UserRepository
 
 /**
  * DSL entry function for registering a user.
@@ -22,9 +23,12 @@ import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistered
  *     age = 28
  * }.expectSuccess()
  *
+ * Requires a [UserRepository] in context, e.g. `with(InMemoryUserRepository()) { registerUser { ... } }`.
+ *
  * The function returns a UserRegistrationResult. The chained `expectSuccess()`
  * asserts that the registration was successful.
  */
+context(userRepository: UserRepository)
 internal fun registerUser(init: UserRegistrationBuilder.() -> Unit): UserRegistrationResult {
     val builder = UserRegistrationBuilder().apply(init)
     val userDto = builder.build()
