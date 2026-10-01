@@ -6,6 +6,7 @@ import io.kotest.matchers.types.shouldBeInstanceOf
 import pl.rafalmaciak.ecommerce.order.Order
 import pl.rafalmaciak.ecommerce.order.Order.CompletedOrder
 import pl.rafalmaciak.ecommerce.order.OrderItem
+import pl.rafalmaciak.ecommerce.user.InMemoryUserRepository
 import pl.rafalmaciak.ecommerce.user.UserDto
 import pl.rafalmaciak.ecommerce.user.UserRegistration
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistered
@@ -17,9 +18,10 @@ class IntegrationTests : ShouldSpec({
     should("create user and order") {
         // given user is registered
         val userDto = UserDto("John", "Doe", "john.doe@example.com", 30)
-        val user = when (val user = UserRegistration.registerUser(userDto)) {
-            is UserRegistered -> user.user
-            else -> throw AssertionError("Expected UserRegistered but got $user")
+        val registrationResult = with(InMemoryUserRepository()) { UserRegistration.registerUser(userDto) }
+        val user = when (registrationResult) {
+            is UserRegistered -> registrationResult.user
+            else -> throw AssertionError("Expected UserRegistered but got $registrationResult")
         }
 
         // and order exists

@@ -2,24 +2,21 @@ package pl.rafalmaciak.ecommerce.user
 
 import kotlin.uuid.Uuid
 
-internal object UserRepository {
+internal interface UserRepository {
+    fun exists(user: User): Boolean
+    fun persist(user: User): Uuid
+}
+
+internal class InMemoryUserRepository : UserRepository {
 
     private val users = mutableSetOf<User>()
-    var shouldFail: Boolean = false
 
-    fun exists(user: User): Boolean =
+    override fun exists(user: User): Boolean =
         users.contains(user)
 
-    fun persist(user: User): Uuid {
-        if (shouldFail) {
-            throw RuntimeException("Failed to persist user")
-        }
+    override fun persist(user: User): Uuid {
         users.add(user)
 
         return Uuid.random()
-    }
-
-    fun clear() {
-        users.clear()
     }
 }
