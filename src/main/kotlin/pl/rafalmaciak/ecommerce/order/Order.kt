@@ -57,7 +57,7 @@ internal data class Order(
     fun shippingAddress(): String {
         check(status == SHIPPED) { "Order in status $status does not have a shipping address" }
         check(shippingAddress != null) { "Shipping address is not set" }
-        return requireNotNull(shippingAddress)
+        return shippingAddress
     }
 
     companion object {
