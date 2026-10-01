@@ -1,7 +1,5 @@
 package pl.rafalmaciak.ecommerce.user
 
-import pl.rafalmaciak.ecommerce.order.Email
-import pl.rafalmaciak.ecommerce.order.InvalidEmailAddressException
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistered
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFailure
 import pl.rafalmaciak.ecommerce.user.UserRegistrationResult.UserRegistrationFailure.ErrorWhilePersistingUser
