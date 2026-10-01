@@ -35,13 +35,12 @@ internal sealed class Order(
         companion object {
             fun createPendingOrder(
                 userId: Uuid,
-            ) {
+            ): PendingOrder =
                 PendingOrder(
                     orderId = Uuid.random(),
                     userId = userId,
                     items = emptyList(),
                 )
-            }
         }
     }
 
