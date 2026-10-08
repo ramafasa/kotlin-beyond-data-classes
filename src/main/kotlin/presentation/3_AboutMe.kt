@@ -11,7 +11,7 @@ const val me = """
     
     - Likes TDD, DDD and other acronyms ;) 
     
-    - Father of 2, husband, hunter.
+    - Father of 2, husband, hunter
     
     
         
